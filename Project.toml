@@ -1,0 +1,17 @@
+name = "WellIO"
+uuid = "e3a1248c-9b61-463c-be64-bcf50051af9a"
+authors = ["Shubhank Saxena", "Júlio Hoffimann"]
+version = "0.1.0"
+
+[deps]
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
