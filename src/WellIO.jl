@@ -15,9 +15,18 @@ function load(filepath::String)
     version_block = match(r"~V(.*?)~"s, info_block)
     wellinfo_block = match(r"~W(.*?)~"s, info_block)
     curveinfo_block = match(r"~C(.*?)~"s, info_block)
+    paraminfo_block = match(r"~P(.*?)~"s, info_block)
     otherinfo_block = match(r"~O(.*?)~"s, info_block)
     #Structure Data 
-    information = Segments(version_block[1],wellinfo_block[1],curveinfo_block[1],otherinfo_block[1],datatable_block[1])
+    if paraminfo_block === nothing && otherinfo_block === nothing
+        information = Segments(version_block[1],wellinfo_block[1],curveinfo_block[1],paraminfo_block,otherinfo_block,datatable_block[1])
+    elseif paraminfo_block === nothing
+        information = Segments(version_block[1],wellinfo_block[1],curveinfo_block[1],paraminfo_block,otherinfo_block[1],datatable_block[1])
+    elseif otherinfo_block === nothing
+        information = Segments(version_block[1],wellinfo_block[1],curveinfo_block[1],paraminfo_block[1],otherinfo_block,datatable_block[1])
+    else
+        information = Segments(version_block[1],wellinfo_block[1],curveinfo_block[1],paraminfo_block[1],otherinfo_block[1],datatable_block[1])
+    end
     return(information)
 end
 
@@ -25,7 +34,8 @@ mutable struct Segments
     version::String 
     wellinfo::String
     curveinfo::String
-    otherinfo::String
+    paraminfo::Union{String,Nothing}
+    otherinfo::Union{String,Nothing}
     tabledata::String
 end
 
