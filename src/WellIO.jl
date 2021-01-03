@@ -17,15 +17,15 @@ function load(filepath::String)
     curveinfo_block = match(r"~C(.*?)~"s, info_block)
     otherinfo_block = match(r"~O(.*?)~"s, info_block)
     #Structure Data 
-    information = Segments(version_block,wellinfo_block,curve_info_block,otherinfo_block,datatable_block)
+    information = Segments(version_block[1],wellinfo_block[1],curveinfo_block[1],otherinfo_block[1],datatable_block[1])
     return(information)
 end
 
 mutable struct Segments
-    version::String
+    version::String 
     wellinfo::String
     curveinfo::String
-    optionalinfo::String
+    otherinfo::String
     tabledata::String
 end
 
