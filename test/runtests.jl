@@ -1,6 +1,10 @@
 using WellIO
 using Test
 
+data = load("./data/Bean_A.las")
+
 @testset "WellIO.jl" begin
-    # Write your tests here.
+    test type(data.version) == String
+    test type(data.paraminfo) === nothing
+    test type(data.otherinfo) === nothing
 end
