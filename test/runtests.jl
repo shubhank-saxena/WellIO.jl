@@ -1,10 +1,13 @@
 using WellIO
 using Test
 
-data = load("./data/Bean_A.las")
+data = WellIO.load("./data/Bean_A.las")
 
 @testset "WellIO.jl" begin
-    test type(data.version) == String
-    test type(data.paraminfo) === nothing
-    test type(data.otherinfo) === nothing
+    @test typeof(data.version) <: String
+    @test typeof(data.wellinfo) <: String
+    @test typeof(data.curveinfo) <:String
+    @test typeof(data.paraminfo) <: Nothing
+    @test typeof(data.otherinfo) <: Nothing
+    @test typeof(data.tabledata) <: String
 end
